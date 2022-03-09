@@ -315,5 +315,5 @@ Once the string is deobfuscated, it will give a link to the Eset website for sta
 
 As last, a few books I like to share I think is worth reading:
 
-[Nim in Action] https://www.amazon.com/Nim-Action-Dominik-Picheta/dp/1617293431
-[Malware Analysis and Detection Engineering] https://www.amazon.com/Malware-Analysis-Detection-Engineering-Comprehensive/dp/1484261925/
+* [Nim in Action] https://www.amazon.com/Nim-Action-Dominik-Picheta/dp/1617293431
+* [Malware Analysis and Detection Engineering] https://www.amazon.com/Malware-Analysis-Detection-Engineering-Comprehensive/dp/1484261925/
