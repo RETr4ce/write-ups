@@ -2,7 +2,7 @@
 
 For recruiting new talent, ESET published a public crack me. This gives you the opportunity to join their team to face global cyber-threats. According to the website the crackme.exe contains **3 hidden passwords** and contains hidden files, texts, conditional tasks, protection against debuggers and other pitfalls. They also encourage you to send your report even if you are unable to pass all the challenges. ESET is interested in your thought process in reverse engineering.    
 
-[Crackme]: https://join.eset.com/en/challenges/crack-me 
+[Crackme] https://join.eset.com/en/challenges/crack-me 
 
 ## Download the crackme.exe program
 
@@ -28,7 +28,7 @@ int main( int argc,      // Number of strings in array argv
           char *envp[] )  // Array of environment variable strings
 ```
 
-[Main function]: https://docs.microsoft.com/en-us/cpp/cpp/main-function-command-line-args?view=msvc-170
+[Main function] https://docs.microsoft.com/en-us/cpp/cpp/main-function-command-line-args?view=msvc-170
 
 We also know that the value of main is returning zero to the operating system. You don't need to have a hardcoded `return 0;` in your code. The compiler does that for you. The return value is always in the eax register so we have to find the last function that has set eax to zero. Hence we have to work backwards in the CRC start routine to find main. In our example main starts at `sub_4013F0` and can change the function to `_main` for IDA to make it a cdecl function. 
 
@@ -45,7 +45,7 @@ if (IsDebuggerPresent())
     ExitProcess(-1);
 ```
 
-[IsDebuggerPresent]: https://docs.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-isdebuggerpresent
+[IsDebuggerPresent] https://docs.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-isdebuggerpresent
 
 ###### GetTickCount
 
@@ -71,7 +71,7 @@ bool IsDebugged(DWORD dwNativeElapsed)
 }
 ```
 
-[GetTickCount]: https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount
+[GetTickCount] https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount
 
 ###### BeingDebugged
 
@@ -87,7 +87,7 @@ The `mov eax, large fs:30h` is loading the address of the Process Environment Bl
 PPEB pPeb = (PPEB)__readfsdword(0x30);
 ```
 
-[PEB structure]: https://docs.microsoft.com/en-us/windows/win32/api/winternl/ns-winternl-peb
+[PEB structure] https://docs.microsoft.com/en-us/windows/win32/api/winternl/ns-winternl-peb
 
 
 
@@ -315,5 +315,5 @@ Once the string is deobfuscated, it will give a link to the Eset website for sta
 
 As last, a few books I like to share I think is worth reading:
 
-[Nim in Action]: https://www.amazon.com/Nim-Action-Dominik-Picheta/dp/1617293431
-[Malware Analysis and Detection Engineering]: https://www.amazon.com/Malware-Analysis-Detection-Engineering-Comprehensive/dp/1484261925/
+[Nim in Action] https://www.amazon.com/Nim-Action-Dominik-Picheta/dp/1617293431
+[Malware Analysis and Detection Engineering] https://www.amazon.com/Malware-Analysis-Detection-Engineering-Comprehensive/dp/1484261925/
