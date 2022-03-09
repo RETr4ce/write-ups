@@ -96,6 +96,7 @@ PPEB pPeb = (PPEB)__readfsdword(0x30);
 What we know is that we're looking for a string "Please enter valid Password". So we're looking for a function that outputs strings on a screen. At offset `0040143F` there is a call to `WriteConsoleA`, which writes a character string to a console screen. Best way is to work ourselves up to find a function that is deobfuscating strings. Doing so, at offset `0040141A`  in _main `sub_4013A0` is a function with 4 arguments. One of the offset `00401415` looks like something like an obfuscated string.
 
 ```assembly
+; Example in IDA
 .text:0040140F                 push    3
 .text:00401411                 push    25h ; '%'
 .text:00401413                 push    1Fh
