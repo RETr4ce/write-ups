@@ -171,6 +171,7 @@ for i in 0..<buffer.len:
 At offset `004014A5` between the `GetTickCount` and `BeingDebugged` there are a bunch of calculations going before the password is checked at function `sub_401300`. At first this doesn't make any sense, but with the tip we got from deobfuscating strings. This looks like it comes straight from Facebook. Think about the  "99% of the people who can't solve", "Solve this if you are a genius!", "95% of people answer it wrong" advertisements on Facebook.
 
 ```assembly
+; Example in IDA
 mov     edx, 1
 imul    edx, 7
 movsx   eax, byte ptr [ebp+edx-32]
@@ -210,6 +211,7 @@ char[9]
 Looking back at `sub_401300` has to password has to match 0x1928F914
 
 ```
+; Example in IDA
 .text:00401658                 lea     ecx, [ebp+Buffer]
 .text:0040165B                 push    ecx
 .text:0040165C                 call    sub_401300
@@ -219,7 +221,7 @@ Looking back at `sub_401300` has to password has to match 0x1928F914
 Having all the details on how the password is calculated. We can get the remaining characters by brute forcing the password and checking it against `0x1928F914`  to verify if the password is correct. Also known as crc (Cyclic Redundancy Check) 
 
 ```nim
-#Bruteforce.nim
+# Bruteforce.nim
 
 import std/[bitops]
 
@@ -268,6 +270,7 @@ Try to look for some unreferenced data, that can be decrypted the same way as th
 Going through _main there is another function at offset `0040167E` that is trying to deobfuscate a string. The results are coming from lpBuffer. If you follow lpBuffer it moves to `.data:00418034 lpBuffer  dd offset unk_4180A8` and you get `unk_4180A8` which is at file offset `160A8`.
 
 ```
+; Example in IDA
 .text:00401668                 push    2
 .text:0040166A                 mov     edx, [ebp+NumberOfCharsRead]
 .text:0040166D                 push    edx
@@ -282,6 +285,7 @@ Going through _main there is another function at offset `0040167E` that is tryin
 The important information being pushed to `sub_401250` is `2`,  `Pr0m3theUs` and `0x100`. These are the key ingredients to deobfuscate the last string we're looking for. What it does is jumping to file offset 160A8 + 0x100. The new address is 161A8,  this will be decoded with the password `Pr0m3theUs` and some xor.
 
 ```nim
+# strings_xor_2.nim
 import std/[streams]
 
 const 
