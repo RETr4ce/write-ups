@@ -2,7 +2,7 @@
 
 For recruiting new talent, ESET published a public crack me. This gives you the opportunity to join their team to face global cyber-threats. According to the website the crackme.exe contains **3 hidden passwords** and contains hidden files, texts, conditional tasks, protection against debuggers and other pitfalls. They also encourage you to send your report even if you are unable to pass all the challenges. ESET is interested in your thought process in reverse engineering.    
 
-[Crackme]: https://join.eset.com/en/challenges/crack-me
+[Crackme]: https://join.eset.com/en/challenges/crack-me 
 
 ## Download the crackme.exe program
 
