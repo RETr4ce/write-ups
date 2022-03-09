@@ -302,7 +302,7 @@ proc sub_401350(a: openArray[byte], buffLen:int): string =
    stdout.write(chr(a[i] xor 2 + byte(key[i mod key.len])))             # Key mod key length
   echo()                                                                # Char xor 2 + key mod key length
 
-var strm = newFileStream("Notfree.exe", fmRead)
+var strm = newFileStream("crackme.exe", fmRead)
 
 for i in 0..<address.len:
   var buff: array[100, byte]   # With nim you've to evaluate at compile time.
