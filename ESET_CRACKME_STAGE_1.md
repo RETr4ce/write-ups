@@ -317,3 +317,50 @@ As last, a few books I like to share I think is worth reading:
 
 * [Nim in Action] https://www.amazon.com/Nim-Action-Dominik-Picheta/dp/1617293431
 * [Malware Analysis and Detection Engineering] https://www.amazon.com/Malware-Analysis-Detection-Engineering-Comprehensive/dp/1484261925/
+
+
+**Edit**
+
+One more thing I like to add, as found by accident. When extracting the executable with 7zip and load the .text header into IDA. While scrolling down the assembly my eye caught the following interesting code.
+
+```assembly
+seg000:0000024B loc_24B:                                ; CODE XREF: sub_0+23D↑j
+seg000:0000024B                 mov     ecx, [ebp+var_48]
+seg000:0000024E                 mov     [ebp+var_58], ecx
+seg000:00000251                 push    104h
+seg000:00000256                 lea     edx, [ebp+var_378]
+seg000:0000025C                 push    edx
+seg000:0000025D                 push    0
+seg000:0000025F                 call    [ebp+var_58]
+seg000:00000262                 mov     [ebp+var_74], eax
+seg000:00000265                 push    0
+seg000:00000267                 lea     eax, [ebp+var_478]
+seg000:0000026D                 push    eax
+seg000:0000026E                 push    0
+seg000:00000270                 push    0
+seg000:00000272                 lea     ecx, [ebp+var_378]
+seg000:00000278                 push    ecx
+seg000:00000279                 call    sub_8AB
+seg000:0000027E                 add     esp, 14h
+seg000:00000281                 mov     [ebp+var_38], 43h ; 'C'
+seg000:00000285                 mov     [ebp+var_37], 72h ; 'r'
+seg000:00000289                 mov     [ebp+var_36], 34h ; '4'
+seg000:0000028D                 mov     [ebp+var_35], 63h ; 'c'
+seg000:00000291                 mov     [ebp+var_34], 6Bh ; 'k'
+seg000:00000295                 mov     [ebp+var_33], 4Dh ; 'M'
+seg000:00000299                 mov     [ebp+var_32], 33h ; '3'
+seg000:0000029D                 mov     [ebp+var_31], 0
+seg000:000002A1                 lea     edx, [ebp+var_38]
+seg000:000002A4                 push    edx
+seg000:000002A5                 lea     eax, [ebp+var_478]
+seg000:000002AB                 push    eax
+seg000:000002AC                 call    sub_790
+```
+
+What it does at `sub_401000` from kernel32  it is checking if the file name is Cra4ckM3.exe if so and the right password, instead of getting "Try to look for some unreferenced data". It will give you the link for stage 2.
+
+```
+.\Cr4ckM3.exe
+Please enter valid password : Pr0m3theUs
+https://join.eset.com/{HASH}/crackme.zip
+```
