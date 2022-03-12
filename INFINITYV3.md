@@ -327,6 +327,7 @@ del %0 /f /q
 
 
 connects and sends data through a discord webhook
+`http://discord.com/api/v6/webhooks/951530422976790528/KWL-_fgp0yDlQyalmDBem11c_C_VmnpsmzTwSeBGRRoUXz40Wa9q_Me_zD6yyxdzLu4J`
 
 
 
