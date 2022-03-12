@@ -12,7 +12,9 @@ SHA256: 9a2d5e0a5d3aca815f209ee87c86434335a1b7fb76f6ccc4206b58cbcdb2259e
 
 https://www.malshare.com/sample.php?action=detail&hash=9a2d5e0a5d3aca815f209ee87c86434335a1b7fb76f6ccc4206b58cbcdb2259e
 
+**Info**
 
+*This isn't completely reversed as I've hit a few blocks on the road. Count this still as a work in progress.* 
 
 ### Behavior
 
