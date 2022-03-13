@@ -332,7 +332,7 @@ Drops TrkBtManServ.exe
 
 ### Stage 5 - RtkBtManServ.exe
 
-Drops Nirsoft software for collecting information. From `Explorer.exe`. When the base64 key is used together with `RTkbtManServ.exe` It is trying to connect to `itroublvehacker.gq`. 
+Drops Nirsoft software for collecting information. From `Explorer.exe`. When the base64 key is used together with `RTkbtManServ.exe` It is trying to connect to `itroublvehacker.gq`. One other link found is `https://itroublvehacker.cf/dummyinfo`
 
 `RtkBtManServ.exe" 3DdHBGXJtZaBFfP8HsYgGdL3DLw4WBuf00yKjIbZKNf6jxChJg599sEsND36Da7G/Waa8dzYrEX0/PImVXvuFvGYu0DQCHU8+Zp717y1Wfdd6HmZAvF3ddLoEF+H7rV932JJt5TduuQLzwuPrrTs6ory0pt1ozzD/8FXar83Cpg=`
 
