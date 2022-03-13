@@ -103,13 +103,13 @@ What binaryReader does is read the first byte. This will tell us that it's parsi
 
 ```
 06 00 00 00 01 6B 01 62 02 64 66 02 61 64 02 73
-^			^   ^  ^  ^  ^  ^  ^
-			|	|  |  |  |  |__|_Chars df
-|			|	|  |  |	 |_ Two chars
-|			|	|  |  |_ char b
-|_ 6 vars   		|	|  |_ One char 
-			|	|_ char K
-			|_ One char
+^	     ^   ^  ^  ^  ^  ^  ^
+	     |	 |  |  |  |  |__|_Chars df
+|	     |	 |  |  |	 |_ Two chars
+|	     |	 |  |  |_ char b
+|_ 6 vars    |	 |  |_ One char 
+	     |	 |_ char K
+	     |_ One char
 66 00 02 66 6E 09 68 68 68 68 68 2E 65 78 65 01 
 65 01 79 03 72 5F 6B 0C 68 61 72 6D 6F 6E 69 63 
 2E 64 61 74
