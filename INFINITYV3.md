@@ -107,7 +107,7 @@ What binaryReader does is read the first byte. This will tell us that it's parsi
 			|	|  |  |  |  |__|_Chars df
 |			|	|  |  |	 |_ Two chars
 |			|	|  |  |_ char b
-|_ 6 vars   |	|  |_ One char 
+|_ 6 vars   		|	|  |_ One char 
 			|	|_ char K
 			|_ One char
 66 00 02 66 6E 09 68 68 68 68 68 2E 65 78 65 01 
@@ -421,7 +421,7 @@ Other observations
 
 * Trying to read strings from `https://itroublvehacker.gq/bypass_stealer` 
 
-* Creates a unique base64 of the systems MachineGuid, ProcessorID, and Serialnumber
+* Creates a unique base64 ID of the systems MachineGuid, ProcessorID, and Serialnumber
 
 * Search for .log, .ldb, .sqlite
 
